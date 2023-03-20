@@ -13,7 +13,7 @@ public class UserRegistrationDTO {
     private String password;
     private String confirmPassword;
     @Size(min=2, max = 50)
-    private String name;
+    private String fullName;
 
     public UserRegistrationDTO() {
     }
@@ -22,7 +22,7 @@ public class UserRegistrationDTO {
         this.email = email;
         this.password = password;
         this.confirmPassword = confirmPassword;
-        this.name = name;
+        this.fullName = name;
     }
 
     public String getEmail() {
@@ -49,12 +49,12 @@ public class UserRegistrationDTO {
         this.confirmPassword = confirmPassword;
     }
 
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }
 

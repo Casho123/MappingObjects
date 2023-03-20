@@ -2,6 +2,7 @@ package com.mapping.service.serviceImpl;
 
 
 import com.mapping.model.dto.UserRegistrationDTO;
+import com.mapping.model.entity.User;
 import com.mapping.repository.UserRepository;
 import com.mapping.service.UserService;
 import com.mapping.util.ValidationUtil;
@@ -36,7 +37,12 @@ public class UserServiceImpl implements UserService {
             violations.stream()
                     .map(ConstraintViolation::getMessage)
                     .forEach(System.out::println);
+            return;
         }
+        User user  = modelMapper.map(userRegistrationDTO, User.class);
+
+        this.userRepository.save(user);
+        System.out.println(user.getFullName() + " was registered");
 
     }
 }

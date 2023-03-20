@@ -14,6 +14,8 @@ public class User extends BaseEntity {
     private String password;
     @Column(name = "full_name")
     private String fullName;
+    @Column(name = "is_admin")
+    private Boolean isAdmin;
 
     @ManyToMany
     private Set<Game> games;
@@ -43,6 +45,14 @@ public class User extends BaseEntity {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
+    }
+
+    public Boolean getAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        isAdmin = admin;
     }
 
     public Set<Game> getGames() {
