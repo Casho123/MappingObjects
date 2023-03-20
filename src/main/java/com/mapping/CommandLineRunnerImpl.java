@@ -20,6 +20,13 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 
         while(true) {
             System.out.println("Enter your commands:");
+            String[] commands = bufferedReader.readLine().split("\\s+");
+
+            String command = commands[0];
+
+            switch (command) {
+
+            }
         }
     }
 }
