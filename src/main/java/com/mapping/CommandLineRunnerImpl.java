@@ -18,14 +18,15 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        while(true) {
+        while (true) {
             System.out.println("Enter your commands:");
-            String[] commands = bufferedReader.readLine().split("\\s+");
+            String[] commands = bufferedReader.readLine().split("\\|");
 
             String command = commands[0];
 
             switch (command) {
-
+                case "RegisterUser":
+                    break;
             }
         }
     }
