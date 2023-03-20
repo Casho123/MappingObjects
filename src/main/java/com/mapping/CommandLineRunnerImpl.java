@@ -1,5 +1,7 @@
 package com.mapping;
 
+import com.mapping.model.dto.UserRegistrationDTO;
+import com.mapping.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -10,8 +12,10 @@ import java.io.InputStreamReader;
 public class CommandLineRunnerImpl implements CommandLineRunner {
 
     private final BufferedReader bufferedReader;
+    private final UserService userService;
 
-    public CommandLineRunnerImpl() {
+    public CommandLineRunnerImpl(UserService userService) {
+        this.userService = userService;
         this.bufferedReader = new BufferedReader(new InputStreamReader(System.in));
     }
 
@@ -26,6 +30,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 
             switch (command) {
                 case "RegisterUser":
+                    this.userService.register(new UserRegistrationDTO(commands[1], commands[2], commands[3], commands[4]));
                     break;
             }
         }
