@@ -18,11 +18,11 @@ public class UserRegistrationDTO {
     public UserRegistrationDTO() {
     }
 
-    public UserRegistrationDTO(String email, String password, String confirmPassword, String name) {
+    public UserRegistrationDTO(String email, String password, String confirmPassword, String fullName) {
         this.email = email;
         this.password = password;
         this.confirmPassword = confirmPassword;
-        this.fullName = name;
+        this.fullName = fullName;
     }
 
     public String getEmail() {

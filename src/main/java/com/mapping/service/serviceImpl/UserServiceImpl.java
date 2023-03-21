@@ -42,6 +42,9 @@ public class UserServiceImpl implements UserService {
             return;
         }
         User user  = modelMapper.map(userRegistrationDTO, User.class);
+        if (this.userRepository.count() == 0) {
+            user.setAdmin(true);
+        }
 
         this.userRepository.save(user);
         System.out.println(user.getFullName() + " was registered");
