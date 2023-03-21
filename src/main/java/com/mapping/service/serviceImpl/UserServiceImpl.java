@@ -1,6 +1,7 @@
 package com.mapping.service.serviceImpl;
 
 
+import com.mapping.model.dto.UserLoginDTO;
 import com.mapping.model.dto.UserRegistrationDTO;
 import com.mapping.model.entity.User;
 import com.mapping.repository.UserRepository;
@@ -19,6 +20,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
     private final ValidationUtil validationUtil;
+    private User loggedInUser;
 
     public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, ValidationUtil validationUtil) {
         this.userRepository = userRepository;
@@ -43,6 +45,27 @@ public class UserServiceImpl implements UserService {
 
         this.userRepository.save(user);
         System.out.println(user.getFullName() + " was registered");
+
+    }
+
+    @Override
+    public void login(UserLoginDTO userLoginDTO) {
+        Set<ConstraintViolation<UserLoginDTO>> violations = validationUtil.violation(userLoginDTO);
+        if (!violations.isEmpty()) {
+            violations.stream()
+                    .map(ConstraintViolation::getMessage)
+                    .forEach(System.out::println);
+            return;
+        }
+        User user = this.userRepository.findByEmailAndPassword(userLoginDTO.getEmail(), userLoginDTO.getPassword()).orElse(null);
+
+        if (user == null) {
+            System.out.println("Incorrect username / password");
+            return;
+        }
+
+        loggedInUser = user;
+        System.out.println("Successfully logged in " + user.getFullName());
 
     }
 }

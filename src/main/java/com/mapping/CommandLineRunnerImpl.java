@@ -1,5 +1,6 @@
 package com.mapping;
 
+import com.mapping.model.dto.UserLoginDTO;
 import com.mapping.model.dto.UserRegistrationDTO;
 import com.mapping.service.UserService;
 import org.springframework.boot.CommandLineRunner;
@@ -32,6 +33,8 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
                 case "RegisterUser":
                     this.userService.register(new UserRegistrationDTO(commands[1], commands[2], commands[3], commands[4]));
                     break;
+                case "LoginUser":
+                    this.userService.login(new UserLoginDTO(commands[1], commands[2]));
             }
         }
     }
