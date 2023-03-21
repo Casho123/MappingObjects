@@ -35,6 +35,10 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
                     break;
                 case "LoginUser":
                     this.userService.login(new UserLoginDTO(commands[1], commands[2]));
+                    break;
+                case "Logout":
+                    this.userService.logout();
+                    break;
             }
         }
     }

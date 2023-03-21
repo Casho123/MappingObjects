@@ -50,13 +50,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void login(UserLoginDTO userLoginDTO) {
-        Set<ConstraintViolation<UserLoginDTO>> violations = validationUtil.violation(userLoginDTO);
-        if (!violations.isEmpty()) {
-            violations.stream()
-                    .map(ConstraintViolation::getMessage)
-                    .forEach(System.out::println);
-            return;
-        }
         User user = this.userRepository.findByEmailAndPassword(userLoginDTO.getEmail(), userLoginDTO.getPassword()).orElse(null);
 
         if (user == null) {
@@ -66,6 +59,18 @@ public class UserServiceImpl implements UserService {
 
         loggedInUser = user;
         System.out.println("Successfully logged in " + user.getFullName());
+
+    }
+
+    @Override
+    public void logout() {
+        if (loggedInUser == null) {
+            System.out.println("Cannot log out. No user was logged in.");
+            return;
+        }
+        String name = loggedInUser.getFullName();
+        loggedInUser = null;
+        System.out.printf("User %s successfully logged out\n", name);
 
     }
 }
