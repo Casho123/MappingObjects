@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
         }
 
         loggedInUser = user;
-
+        System.out.println("Successfully logged in " + user.getFullName());
 
     }
 
